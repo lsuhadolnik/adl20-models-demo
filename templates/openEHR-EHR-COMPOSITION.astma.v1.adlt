@@ -8,17 +8,21 @@ language
     original_language = <[ISO_639-1::en]>
     translations = <
         ["sl"] = <
+            author = <
+                ["name"] = <"?">
+            >
             language = <[ISO_639-1::sl]>
         >
     >
     
 description
-    copyright = <"">
+    copyright = <"copyright (c) 2010 openEHR Foundation">
     details = <
         ["en"] = <
+            keywords = <"progress", "note", "encounter">
             language = <[ISO_639-1::en]>
             misuse = <"">
-            purpose = <"">
+            purpose = <"Record of encounter as a progress note.">
             use = <"">
         >
         ["sl"] = <
@@ -30,6 +34,11 @@ description
         >
     >
     lifecycle_state = <"unmanaged">
+    original_author = <
+        ["organisation"] = <"Ocean Informatics">
+        ["name"] = <"Thomas Beale">
+        ["date"] = <"2005-10-10">
+    >
 
 definition
     COMPOSITION[id1.1] matches {    -- Encounter
@@ -41,7 +50,8 @@ definition
             }
         }
         content matches {
-            use_archetype ACTION[id0.2, openEHR-EHR-ACTION.ovl-astma-medication-001.v1.0.0]
+            use_archetype OBSERVATION[id0.2, openEHR-EHR-OBSERVATION.ovl-astma-pef-001.v1]
+            use_archetype ACTION[id0.3, openEHR-EHR-ACTION.ovl-astma-medication-001.v1.0.0]
         }
     }
 
@@ -57,6 +67,27 @@ terminology
             ["id1.1"] = <
                 text = <"Encounter">
                 description = <"Generic encounter or progress note composition">
+            >
+        >
+    >
+
+
+---------------------------------------------------------------------------------
+template_overlay
+    openEHR-EHR-OBSERVATION.ovl-astma-pef-001.v1
+
+specialize
+    openEHR-EHR-OBSERVATION.pef.v1
+
+definition
+    OBSERVATION[id1.1]     -- PEF
+
+terminology
+    term_definitions = <
+        ["en"] = <
+            ["id1.1"] = <
+                text = <"PEF">
+                description = <"PEF">
             >
         >
     >
@@ -223,7 +254,7 @@ terminology
         >
         ["en"] = <
             ["id1.1"] = <
-                text = <"Medication action">
+                text = <"Prejem zdravila">
                 description = <"Details of use, administration, dispensing or other care step relating to a medicine, vaccine or other therapeutic good which may arise from an instruction from a clinician.">
             >
         >
